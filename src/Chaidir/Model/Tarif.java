@@ -17,17 +17,21 @@ public class Tarif {
     private double sds;
     private double ons;
     private double hds;
+    private double hargaBarang;
+    private int berat;
 
     public Tarif() {
     }
 
-    public Tarif(String kotaTujuan, double reguler, double kilat, double sds, double ons, double hds) {
+    public Tarif(String kotaTujuan, double reguler, double kilat, double sds, double ons, double hds,int berat) {
         this.kotaTujuan = kotaTujuan;
         this.reguler = reguler;
         this.kilat = kilat;
         this.sds = sds;
         this.ons = ons;
         this.hds = hds;
+        this.hargaBarang = hargaBarang;
+        this.berat = berat;
     }
 
     /**
@@ -114,9 +118,70 @@ public class Tarif {
         this.hds = hds;
     }
 
+    /**
+     * @return the hargaBarang
+     */
+    public double getHargaBarang() {
+        return hargaBarang;
+    }
+
+    /**
+     * @param hargaBarang the hargaBarang to set
+     */
+    public void setHargaBarang(double hargaBarang) {
+        this.hargaBarang = hargaBarang;
+    }
+    
     @Override
     public String toString() {
         return this.kotaTujuan;
+    }
+    Paket p = new Paket();
+    public double hitungBiayaReguler() {
+        return this.reguler = this.getBerat() * this.reguler;
+    }
+    public double hitungBiayaKilat () {
+        return this.kilat = this.getBerat() *this.kilat;
+    }
+    public double hitungBiayaSDS () {
+        return this.sds = this.getBerat() * this.sds;
+    }
+    public double hitungBiayaONS () {
+        return this.ons = this.getBerat()*this.ons;
+                 
+    }
+    public double hitungBiayaHDS () {
+        return this.hds = this.getBerat() * this.hds;
+    }
+    public double hitungBiayaRegulerWintAsuransi () {
+        return this.reguler = (this.getBerat() * this.reguler) + (this.hargaBarang * 0.03); 
+    }
+    public double hitungBiayaKilatWithAsuransi () {
+        return this.kilat = (this.getBerat() *this.kilat) + (this.hargaBarang * 0.03);
+    }
+    public double hitungBiayaSDSWithAsuransi () {
+        return this.sds = (this.getBerat() * this.sds) + (this.hargaBarang * 0.03);
+    }
+    public double hitungBiayaONSWithAsuransi () {
+        return this.ons = (this.getBerat()*this.ons) + (this.hargaBarang * 0.03);
+                 
+    }
+    public double hitungBiayaHDSWithAsuransi () {
+        return this.hds = (this.getBerat() * this.hds) + (this.hargaBarang * 0.03);
+    }
+
+    /**
+     * @return the berat
+     */
+    public int getBerat() {
+        return berat;
+    }
+
+    /**
+     * @param berat the berat to set
+     */
+    public void setBerat(int berat) {
+        this.berat = berat;
     }
     
     
