@@ -8,6 +8,7 @@ package Chaidir.Dao;
 import Chaidir.Model.Tarif;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,7 +24,8 @@ public class TarifFileDAO {
         List<Tarif> tarifList = new ArrayList<>();
         
         try {
-            Scanner scan = new Scanner(new File("C:\\Users\\KHAIDIR\\Documents\\Chaidir\\NetBeansProjects\\contoh.txt"));
+            
+            Scanner scan = new Scanner(new File("E:/tarif.txt"));
 
             while (scan.hasNextLine()) {
                 Tarif tarif = new Tarif();

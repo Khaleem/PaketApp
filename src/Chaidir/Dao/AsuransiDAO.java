@@ -13,29 +13,60 @@ import java.util.List;
  * @author KHAIDIR
  */
 public class AsuransiDAO {
-     public Tarif hitungHarga(String namaKota, int berat, double hargaBarang) {
-        Tarif t = new Tarif();
+
+    public Tarif hitungHarga(String namaKota, int berat) {
+
+        Tarif tariff = new Tarif();
+
         List<Tarif> lisKota = TarifFileDAO.PaketKota();
+
         for (Tarif tarif : lisKota) {
             if (namaKota.equalsIgnoreCase(tarif.getKotaTujuan())) {
-               t.setBerat(berat);
-               t.setHargaBarang(hargaBarang);
-                t.setKotaTujuan(namaKota);
-                t.setReguler(tarif.getReguler());
-                t.setKilat(tarif.getKilat());
-                t.setOns(tarif.getOns());
-                t.setSds(tarif.getSds());
-                t.setHds(tarif.getHds());
-                
-                t.hitungBiayaRegulerWintAsuransi();
-                t.hitungBiayaKilatWithAsuransi();
-                t.hitungBiayaSDSWithAsuransi();
-                t.hitungBiayaONSWithAsuransi();
-                t.hitungBiayaHDSWithAsuransi();
-                
+                tariff.setBerat(berat);
+                tariff.setKotaTujuan(namaKota);
+                tariff.setReguler(tarif.getReguler());
+                tariff.setKilat(tarif.getKilat());
+                tariff.setOns(tarif.getOns());
+                tariff.setSds(tarif.getSds());
+                tariff.setHds(tarif.getHds());
+
+                tariff.hitungBiayaReguler();
+                tariff.hitungBiayaKilat();
+                tariff.hitungBiayaSDS();
+                tariff.hitungBiayaONS();
+                tariff.hitungBiayaHDS();
             }
         }
-        
-        return t;
+        return tariff;
     }
+    
+    public Tarif hitungHarga(String namaKota, int berat, double hargaBarang) {
+
+        Tarif tariff = new Tarif();
+
+        List<Tarif> lisKota = TarifFileDAO.PaketKota();
+
+        for (Tarif tarif : lisKota) {
+            if (namaKota.equalsIgnoreCase(tarif.getKotaTujuan())) {
+                tariff.setBerat(berat);
+                tariff.setHargaBarang(hargaBarang);
+                tariff.setKotaTujuan(namaKota);
+                tariff.setReguler(tarif.getReguler());
+                tariff.setKilat(tarif.getKilat());
+                tariff.setOns(tarif.getOns());
+                tariff.setSds(tarif.getSds());
+                tariff.setHds(tarif.getHds());
+
+                tariff.hitungBiayaRegulerWintAsuransi();
+                tariff.hitungBiayaKilatWithAsuransi();
+                tariff.hitungBiayaSDSWithAsuransi();
+                tariff.hitungBiayaONSWithAsuransi();
+                tariff.hitungBiayaHDSWithAsuransi();
+
+            }
+        }
+
+        return tariff;
+    }
+    
 }

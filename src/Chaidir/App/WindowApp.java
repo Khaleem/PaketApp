@@ -6,11 +6,12 @@
 package Chaidir.App;
 
 import Chaidir.Dao.AsuransiDAO;
-import Chaidir.Dao.PengirimanDao;
 import Chaidir.Model.Paket;
 import Chaidir.Model.Tarif;
 import Chaidir.Dao.TarifFileDAO;
+import java.text.DecimalFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,15 +19,13 @@ import java.util.List;
  */
 public class WindowApp extends javax.swing.JFrame {
     
-    //TarifFileDAO tariffiledao;
     List<Tarif> kotaTujuan;
     Tarif[] kota;
-
-    /**
-     * Creates new form WindowApp
-     */
+    Tarif tarif = new Tarif();
+    
     public WindowApp() {
        initpaket();
+       tarif = new Tarif();
        getKota();
        initComponents();
     }
@@ -90,7 +89,7 @@ public class WindowApp extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         kotaDPPaket = new javax.swing.JComboBox<>(kota);
         jLabel14 = new javax.swing.JLabel();
-        jenisBarangCombo = new javax.swing.JComboBox<String>();
+        jenisBarangCombo = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         noPaketTF = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -126,11 +125,11 @@ public class WindowApp extends javax.swing.JFrame {
         regulerRadio = new javax.swing.JRadioButton();
         kilatRadio = new javax.swing.JRadioButton();
         hsRadio = new javax.swing.JRadioButton();
-        submitButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         tarifAkhirTF = new javax.swing.JTextField();
+        hitungBTN = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -319,7 +318,7 @@ public class WindowApp extends javax.swing.JFrame {
 
         jLabel14.setText("Kota Tujuan :");
 
-        jenisBarangCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dokumen", "Elektronik", "Makanan", "Pakaian" }));
+        jenisBarangCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dokumen", "Elektronik", "Makanan", "Pakaian" }));
 
         jLabel15.setText("Jenis Barang :");
 
@@ -583,6 +582,7 @@ public class WindowApp extends javax.swing.JFrame {
         LayananBTNGRP.add(kilatRadio);
         kilatRadio.setText("Kilat");
 
+        LayananBTNGRP.add(hsRadio);
         hsRadio.setText("Holiday Service");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -592,13 +592,15 @@ public class WindowApp extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(regulerRadio)
-                    .addComponent(jLabel26)
-                    .addComponent(kilatRadio)
-                    .addComponent(sdsRadio)
-                    .addComponent(onsRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hsRadio))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(onsRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addGap(0, 67, Short.MAX_VALUE))
+                    .addComponent(sdsRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kilatRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(regulerRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hsRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,15 +617,8 @@ public class WindowApp extends javax.swing.JFrame {
                 .addComponent(onsRadio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hsRadio)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-
-        submitButton.setText("Submit");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
 
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -642,28 +637,34 @@ public class WindowApp extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel30))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel31)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tarifAkhirTF, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel30)
+                .addContainerGap(254, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tarifAkhirTF, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel30)
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(tarifAkhirTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
+
+        hitungBTN.setText("Submit");
+        hitungBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hitungBTNActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -698,14 +699,15 @@ public class WindowApp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(138, 138, 138)
-                                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(hitungBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -724,18 +726,18 @@ public class WindowApp extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(submitButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(hitungBTN)))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         pack();
@@ -779,6 +781,7 @@ public class WindowApp extends javax.swing.JFrame {
 
     private void tarifAkhirTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarifAkhirTFActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_tarifAkhirTFActionPerformed
 
     private void kotaPengirimComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotaPengirimComboActionPerformed
@@ -794,6 +797,7 @@ public class WindowApp extends javax.swing.JFrame {
     private void kotaDPPaketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotaDPPaketActionPerformed
         // TODO add your handling code here:
         Tarif tarif = (Tarif)kotaDPPaket.getSelectedItem();
+        
     }//GEN-LAST:event_kotaDPPaketActionPerformed
 
     private void hargaBarangTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hargaBarangTFActionPerformed
@@ -814,11 +818,11 @@ public class WindowApp extends javax.swing.JFrame {
         jLabel29.setEnabled(false);
     }//GEN-LAST:event_tidakRadioActionPerformed
 
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
+    private void hitungBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungBTNActionPerformed
+        try {
+        
         if (yaRadio.isSelected()) {
-            
-        Tarif tarif = new Tarif();
+
         AsuransiDAO pa = new AsuransiDAO();
         String namaKota = String.valueOf(kotaDPPaket.getSelectedItem());
         String beraTot = beratTF.getText();
@@ -826,31 +830,42 @@ public class WindowApp extends javax.swing.JFrame {
         String harga = hargaBarangTF.getText();
         double hargaBarang = Double.parseDouble(harga);
         tarif = pa.hitungHarga(namaKota, berat, hargaBarang);
-        
-        regulerRadio.setText("(Reguler) "+"Rp. "+tarif.getReguler());
-        kilatRadio.setText("(Kilat) "+"Rp. "+tarif.getKilat());
-        sdsRadio.setText("(SDS) "+"Rp. "+tarif.getSds());
-        onsRadio.setText("(ONS) "+"RP. "+tarif.getOns());
-        hsRadio.setText("(HS) "+"RP. "+tarif.getHds());
-        
-        ketAsuransi.setText("*Asuransi Dikenakan Biaya 0.03 % dari Harga Barang");
+
         } else {    
-               
-         Tarif tarif = new Tarif();
-        PengirimanDao p = new PengirimanDao();
+              
+        AsuransiDAO p = new AsuransiDAO();
         String namaKota = String.valueOf(kotaDPPaket.getSelectedItem());
         String beraTot = beratTF.getText();
         int berat = Integer.parseInt(beraTot);
         
         tarif = p.hitungHarga(namaKota, berat);
-        
-        regulerRadio.setText("(Reguler) "+"Rp. "+tarif.getReguler());
-        kilatRadio.setText("(Kilat) "+"Rp. "+tarif.getKilat());
-        sdsRadio.setText("(SDS) "+"Rp. "+tarif.getSds());
-        onsRadio.setText("(ONS) "+"RP. "+tarif.getOns());
-        hsRadio.setText("(HS) "+"RP. "+tarif.getHds());
+                
         }
-    }//GEN-LAST:event_submitButtonActionPerformed
+        
+        if(regulerRadio.isSelected()){
+            tarifAkhirTF.setText(tarif.getReguler()+"");
+        }
+        
+        if(kilatRadio.isSelected()){
+            tarifAkhirTF.setText(tarif.getKilat()+"");
+        }
+        
+        if(sdsRadio.isSelected()){
+            tarifAkhirTF.setText(tarif.getSds()+"");
+        }
+        
+        if(onsRadio.isSelected()){
+            tarifAkhirTF.setText(tarif.getOns()+"");
+        }
+        
+        if(hsRadio.isSelected()){
+            tarifAkhirTF.setText(tarif.getHds()+"");
+        }
+        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "DATA HARUS DIISI!");
+        }
+    }//GEN-LAST:event_hitungBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -898,6 +913,7 @@ public class WindowApp extends javax.swing.JFrame {
     private javax.swing.JRadioButton ccRadio;
     private javax.swing.JRadioButton debitRadio;
     private javax.swing.JTextField hargaBarangTF;
+    private javax.swing.JButton hitungBTN;
     private javax.swing.JRadioButton hsRadio;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -958,7 +974,6 @@ public class WindowApp extends javax.swing.JFrame {
     private javax.swing.JTextField panjangTF;
     private javax.swing.JRadioButton regulerRadio;
     private javax.swing.JRadioButton sdsRadio;
-    private javax.swing.JButton submitButton;
     private javax.swing.JTextField tarifAkhirTF;
     private javax.swing.JTextField telpPenerimaTF;
     private javax.swing.JTextField telpTF;

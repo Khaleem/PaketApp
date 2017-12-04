@@ -10,7 +10,7 @@ package Chaidir.Model;
  * @author user
  */
 public class Tarif {
-    
+
     private String kotaTujuan;
     private double reguler;
     private double kilat;
@@ -23,7 +23,7 @@ public class Tarif {
     public Tarif() {
     }
 
-    public Tarif(String kotaTujuan, double reguler, double kilat, double sds, double ons, double hds,int berat) {
+    public Tarif(String kotaTujuan, double reguler, double kilat, double sds, double ons, double hds, int berat) {
         this.kotaTujuan = kotaTujuan;
         this.reguler = reguler;
         this.kilat = kilat;
@@ -131,42 +131,52 @@ public class Tarif {
     public void setHargaBarang(double hargaBarang) {
         this.hargaBarang = hargaBarang;
     }
-    
+
     @Override
     public String toString() {
         return this.kotaTujuan;
     }
+    
     Paket p = new Paket();
+
     public double hitungBiayaReguler() {
         return this.reguler = this.getBerat() * this.reguler;
     }
-    public double hitungBiayaKilat () {
-        return this.kilat = this.getBerat() *this.kilat;
+
+    public double hitungBiayaKilat() {
+        return this.kilat = this.getBerat() * this.kilat;
     }
-    public double hitungBiayaSDS () {
+
+    public double hitungBiayaSDS() {
         return this.sds = this.getBerat() * this.sds;
     }
-    public double hitungBiayaONS () {
-        return this.ons = this.getBerat()*this.ons;
-                 
+
+    public double hitungBiayaONS() {
+        return this.ons = this.getBerat() * this.ons;
     }
-    public double hitungBiayaHDS () {
+
+    public double hitungBiayaHDS() {
         return this.hds = this.getBerat() * this.hds;
     }
-    public double hitungBiayaRegulerWintAsuransi () {
-        return this.reguler = (this.getBerat() * this.reguler) + (this.hargaBarang * 0.03); 
+
+    public double hitungBiayaRegulerWintAsuransi() {
+        return this.reguler = (this.getBerat() * this.reguler) + (this.hargaBarang * 0.03);
     }
-    public double hitungBiayaKilatWithAsuransi () {
-        return this.kilat = (this.getBerat() *this.kilat) + (this.hargaBarang * 0.03);
+
+    public double hitungBiayaKilatWithAsuransi() {
+        return this.kilat = (this.getBerat() * this.kilat) + (this.hargaBarang * 0.03);
     }
-    public double hitungBiayaSDSWithAsuransi () {
+
+    public double hitungBiayaSDSWithAsuransi() {
         return this.sds = (this.getBerat() * this.sds) + (this.hargaBarang * 0.03);
     }
-    public double hitungBiayaONSWithAsuransi () {
-        return this.ons = (this.getBerat()*this.ons) + (this.hargaBarang * 0.03);
-                 
+
+    public double hitungBiayaONSWithAsuransi() {
+        return this.ons = (this.getBerat() * this.ons) + (this.hargaBarang * 0.03);
+
     }
-    public double hitungBiayaHDSWithAsuransi () {
+
+    public double hitungBiayaHDSWithAsuransi() {
         return this.hds = (this.getBerat() * this.hds) + (this.hargaBarang * 0.03);
     }
 
@@ -183,7 +193,5 @@ public class Tarif {
     public void setBerat(int berat) {
         this.berat = berat;
     }
-    
-    
-    
+
 }
