@@ -6,10 +6,8 @@
 package Chaidir.App;
 
 import Chaidir.Dao.AsuransiDAO;
-import Chaidir.Model.Paket;
 import Chaidir.Model.Tarif;
 import Chaidir.Dao.TarifFileDAO;
-import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class WindowApp extends javax.swing.JFrame {
-    
+   
     List<Tarif> kotaTujuan;
     Tarif[] kota;
     Tarif tarif = new Tarif();
@@ -61,6 +59,19 @@ public class WindowApp extends javax.swing.JFrame {
         LayananBTNGRP = new javax.swing.ButtonGroup();
         AsuransiBTNGRP = new javax.swing.ButtonGroup();
         JenisBayarBTNGRP = new javax.swing.ButtonGroup();
+        dialogPane = new javax.swing.JDialog();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        namaDialog = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        nama2Dialog = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        tujuanDialog = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        tarifDialog = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        jenisDialog = new javax.swing.JTextField();
+        doneDialog = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -125,16 +136,110 @@ public class WindowApp extends javax.swing.JFrame {
         regulerRadio = new javax.swing.JRadioButton();
         kilatRadio = new javax.swing.JRadioButton();
         hsRadio = new javax.swing.JRadioButton();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        tarifAkhirTF = new javax.swing.JTextField();
         hitungBTN = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+
+        dialogPane.setMinimumSize(new java.awt.Dimension(500, 350));
+
+        jLabel32.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel32.setText("Data Transaksi");
+
+        jLabel33.setText("Nama Pengirim :");
+
+        namaDialog.setEditable(false);
+
+        jLabel34.setText("Nama Penerima :");
+
+        nama2Dialog.setEditable(false);
+
+        jLabel35.setText("Kota Tujuan :");
+
+        tujuanDialog.setEditable(false);
+
+        jLabel36.setText("Tarif Akhir :");
+
+        tarifDialog.setEditable(false);
+
+        jLabel31.setText("Jenis Pengiriman :");
+
+        jenisDialog.setEditable(false);
+        jenisDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jenisDialogActionPerformed(evt);
+            }
+        });
+
+        doneDialog.setText("Done");
+        doneDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doneDialogActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogPaneLayout = new javax.swing.GroupLayout(dialogPane.getContentPane());
+        dialogPane.getContentPane().setLayout(dialogPaneLayout);
+        dialogPaneLayout.setHorizontalGroup(
+            dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addGap(18, 31, Short.MAX_VALUE)
+                        .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel32)
+                            .addComponent(namaDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogPaneLayout.createSequentialGroup()
+                        .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel31))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tarifDialog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                            .addComponent(nama2Dialog)
+                            .addComponent(tujuanDialog)
+                            .addComponent(jenisDialog, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+            .addGroup(dialogPaneLayout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(doneDialog)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogPaneLayout.setVerticalGroup(
+            dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogPaneLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel32)
+                .addGap(18, 18, 18)
+                .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(namaDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nama2Dialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tujuanDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jenisDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tarifDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36))
+                .addGap(18, 18, 18)
+                .addComponent(doneDialog)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,7 +301,7 @@ public class WindowApp extends javax.swing.JFrame {
                         .addGap(10, 10, 10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                             .addComponent(telpTF)
                             .addComponent(namaPengirimTF))
                         .addGap(5, 5, 5))))
@@ -595,7 +700,7 @@ public class WindowApp extends javax.swing.JFrame {
                     .addComponent(onsRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel26)
-                        .addGap(0, 67, Short.MAX_VALUE))
+                        .addGap(0, 82, Short.MAX_VALUE))
                     .addComponent(sdsRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(kilatRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(regulerRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -618,45 +723,6 @@ public class WindowApp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hsRadio)
                 .addContainerGap(21, Short.MAX_VALUE))
-        );
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel30.setText("Tarif Akhir :");
-
-        jLabel31.setText("Rp.");
-
-        tarifAkhirTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tarifAkhirTFActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel30)
-                .addContainerGap(254, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tarifAkhirTF, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel30)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(tarifAkhirTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         hitungBTN.setText("Submit");
@@ -697,24 +763,23 @@ public class WindowApp extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 61, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(155, 155, 155)
-                                .addComponent(hitungBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(hitungBTN)
+                                .addGap(137, 137, 137)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -731,13 +796,10 @@ public class WindowApp extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(hitungBTN)))
-                .addGap(0, 14, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(hitungBTN))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -779,11 +841,6 @@ public class WindowApp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sdsRadioActionPerformed
 
-    private void tarifAkhirTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarifAkhirTFActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tarifAkhirTFActionPerformed
-
     private void kotaPengirimComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotaPengirimComboActionPerformed
         // TODO add your handling code here:
         Tarif tarif = (Tarif)kotaPengirimCombo.getSelectedItem();
@@ -819,10 +876,11 @@ public class WindowApp extends javax.swing.JFrame {
     }//GEN-LAST:event_tidakRadioActionPerformed
 
     private void hitungBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungBTNActionPerformed
+        
         try {
         
         if (yaRadio.isSelected()) {
-
+            
         AsuransiDAO pa = new AsuransiDAO();
         String namaKota = String.valueOf(kotaDPPaket.getSelectedItem());
         String beraTot = beratTF.getText();
@@ -843,29 +901,63 @@ public class WindowApp extends javax.swing.JFrame {
         }
         
         if(regulerRadio.isSelected()){
-            tarifAkhirTF.setText(tarif.getReguler()+"");
+            tarifDialog.setText(tarif.getReguler()+"");
         }
         
         if(kilatRadio.isSelected()){
-            tarifAkhirTF.setText(tarif.getKilat()+"");
+            tarifDialog.setText(tarif.getKilat()+"");
         }
         
         if(sdsRadio.isSelected()){
-            tarifAkhirTF.setText(tarif.getSds()+"");
+            tarifDialog.setText(tarif.getSds()+"");
         }
         
         if(onsRadio.isSelected()){
-            tarifAkhirTF.setText(tarif.getOns()+"");
+            tarifDialog.setText(tarif.getOns()+"");
         }
         
         if(hsRadio.isSelected()){
-            tarifAkhirTF.setText(tarif.getHds()+"");
+            tarifDialog.setText(tarif.getHds()+"");
         }
-        
+
+       dialogPane.dispose();
+       dialogPane.setVisible(true);
+       
+       namaDialog.setText(namaPengirimTF.getText());
+       nama2Dialog.setText(namaPenerimaTF.getText());
+       tujuanDialog.setText(""+kotaDPPaket.getSelectedItem());
+       String jenis = "";
+       if(LayananBTNGRP.isSelected(regulerRadio.getModel())){
+       jenis = regulerRadio.getActionCommand();
+       }
+       if(LayananBTNGRP.isSelected(kilatRadio.getModel())){
+       jenis = kilatRadio.getActionCommand();
+       }
+       if(LayananBTNGRP.isSelected(onsRadio.getModel())){
+       jenis = onsRadio.getActionCommand();
+       }
+       if(LayananBTNGRP.isSelected(sdsRadio.getModel())){
+       jenis = sdsRadio.getActionCommand();
+       }
+       if(LayananBTNGRP.isSelected(hsRadio.getModel())){
+       jenis = hsRadio.getActionCommand();
+       }
+       jenisDialog.setText(jenis);
+       tarifDialog.setText(tarifDialog.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "DATA HARUS DIISI!");
         }
+        
     }//GEN-LAST:event_hitungBTNActionPerformed
+
+    private void jenisDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenisDialogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jenisDialogActionPerformed
+
+    private void doneDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneDialogActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_doneDialogActionPerformed
 
     /**
      * @param args the command line arguments
@@ -912,6 +1004,8 @@ public class WindowApp extends javax.swing.JFrame {
     private javax.swing.JRadioButton cashRadio;
     private javax.swing.JRadioButton ccRadio;
     private javax.swing.JRadioButton debitRadio;
+    private javax.swing.JDialog dialogPane;
+    private javax.swing.JButton doneDialog;
     private javax.swing.JTextField hargaBarangTF;
     private javax.swing.JButton hitungBTN;
     private javax.swing.JRadioButton hsRadio;
@@ -939,8 +1033,12 @@ public class WindowApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -957,16 +1055,18 @@ public class WindowApp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jenisBarangCombo;
+    private javax.swing.JTextField jenisDialog;
     private javax.swing.JLabel ketAsuransi;
     private javax.swing.JRadioButton kilatRadio;
     private javax.swing.JComboBox<Tarif> kotaDPPaket;
     private javax.swing.JComboBox<Tarif> kotaPenerimaCombo;
     private javax.swing.JComboBox<Tarif> kotaPengirimCombo;
     private javax.swing.JTextField lebarTF;
+    private javax.swing.JTextField nama2Dialog;
+    private javax.swing.JTextField namaDialog;
     private javax.swing.JTextField namaPenerimaTF;
     private javax.swing.JTextField namaPengirimTF;
     private javax.swing.JTextField noPaketTF;
@@ -974,11 +1074,12 @@ public class WindowApp extends javax.swing.JFrame {
     private javax.swing.JTextField panjangTF;
     private javax.swing.JRadioButton regulerRadio;
     private javax.swing.JRadioButton sdsRadio;
-    private javax.swing.JTextField tarifAkhirTF;
+    private javax.swing.JTextField tarifDialog;
     private javax.swing.JTextField telpPenerimaTF;
     private javax.swing.JTextField telpTF;
     private javax.swing.JRadioButton tidakRadio;
     private javax.swing.JTextField tinggiTF;
+    private javax.swing.JTextField tujuanDialog;
     private javax.swing.JRadioButton yaRadio;
     // End of variables declaration//GEN-END:variables
 }
